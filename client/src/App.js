@@ -17,6 +17,9 @@ function App() {
           <Route exact path="/books/:id">
             <Detail />
           </Route>
+          <Route exact path="/savedBooks">
+            <Detail />
+          </Route>
           <Route>
             <NoMatch />
           </Route>

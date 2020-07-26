@@ -4,7 +4,7 @@
 
   Welcome to Google Books React Search!
 
-  ![image description](./client/public/googlebooks.png)
+  ![image description](./client/public/assets/googlebooks.png)
 
   ## Table of Contents
   
