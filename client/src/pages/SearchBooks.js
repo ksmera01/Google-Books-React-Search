@@ -6,9 +6,9 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
-function Books() {
+function SearchBooks() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
   const [formObject, setFormObject] = useState({})
@@ -66,20 +66,10 @@ function Books() {
             <Input
               onChange={handleInputChange}
               name="title"
-              placeholder="Title (required)"
-            />
-            <Input
-              onChange={handleInputChange}
-              name="author"
-              placeholder="Author (required)"
-            />
-            <TextArea
-              onChange={handleInputChange}
-              name="synopsis"
-              placeholder="Synopsis (Optional)"
+              placeholder="Enter Book Here"
             />
             <FormBtn
-              disabled={!(formObject.author && formObject.title)}
+              disabled={!(formObject.title)}
               onClick={handleFormSubmit}
             >
               Search
@@ -114,5 +104,5 @@ function Books() {
 }
 
 
-export default Books;
+export default SearchBooks;
 
