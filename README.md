@@ -2,9 +2,15 @@
 
 ## Description
 
-  Welcome to Google Books React Search!
+  Welcome to Google Books React Search! In this application, requirements stated to create React components, work with helper/util functions, and utilize React lifecycle methods to query and display books based on user searches. Other technologies that helped fuel this app are Node, Express and MongoDB so that users can save books to review or purchase later.
 
-  ![image description](./client/public/assets/googlebooks.png)
+  ![image description](./client/public/assets/googlebooks1.png)
+
+  ![image description](./client/public/assets/googlebooks2.png)
+
+  ![image description](./client/public/assets/googlebooks3.png)
+
+  ![image description](./client/public/assets/googlebooks4.png)
 
   ## Table of Contents
   

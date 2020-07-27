@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 // import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+import { List, ListItem, Card2, SaveBookBtn2 } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import Card from "../components/Card";
 
@@ -23,7 +23,7 @@ function SearchBooks() {
   //     .catch(err => console.log(err));
   // };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
+  // // Deletes a book from the database with a given id, then reloads books from the db
   // function deleteBook(id) {
   //   API.deleteBook(id)
   //     .then(res => loadBooks())
@@ -46,6 +46,10 @@ function SearchBooks() {
         .catch(err => console.log(err));
     }
   };
+
+  function saveForLater(book) {
+    API.saveBook(book)
+  }
 
   return (
     <Container fluid>
@@ -73,14 +77,30 @@ function SearchBooks() {
             <h1>Search Results</h1>
           </Jumbotron>
           {books.length ? (
-            <List>
-              {books.map(book => (
-                <Card key={book.id ? book.id : ""}
-                  title={book.volumeInfo.title ? book.volumeInfo.title : ""} authors={book.volumeInfo.authors ? book.volumeInfo.authors : ""} image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""}
-                  description={book.volumeInfo.description ? book.volumeInfo.description : ""} link={book.volumeInfo.infoLink ? book.volumeInfo.infoLink : ""} gBookId={book.id ? book.id : ""}>
-                </Card>
-              ))}
-            </List>
+            <div>
+              {books.map(book => {
+                return (
+                  <Container>
+                    <SaveBookBtn onClick={() => saveForLater({
+                      title: book.volumeInfo.title,
+                      authors: book.volumeInfo.authors,
+                      image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : "",
+                      description: book.volumeInfo.description,
+                      link: book.volumeInfo.infoLink,
+                      gBookId: book.id
+
+                    })} />
+                    <Card
+                      key={book.id ? book.id : ""}
+                      title={book.volumeInfo.title ? book.volumeInfo.title : ""} authors={book.volumeInfo.authors ? book.volumeInfo.authors : ""} image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""}
+                      description={book.volumeInfo.description ? book.volumeInfo.description : ""} link={book.volumeInfo.infoLink ? book.volumeInfo.infoLink : ""} gBookId={book.id ? book.id : ""}>
+
+                    </Card>
+
+                  </Container>
+                )
+              })}
+            </div>
           ) : (
               <h3>No Results to Display</h3>
             )}

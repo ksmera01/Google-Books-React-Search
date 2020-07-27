@@ -5,12 +5,13 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import Card from "../components/Card";
 // import { Input, TextArea, FormBtn } from "../components/Form";
 
 function SavedBooks() {
     // Setting our component's initial state
-    const [books, setBooks] = useState([])
-    const [formObject, setFormObject] = useState({})
+    const [booksSaved, setBooksSaved] = useState([])
+
 
     // Load all books and store them with setBooks
     useEffect(() => {
@@ -21,7 +22,7 @@ function SavedBooks() {
     function loadBooks() {
         API.getBooks()
             .then(res =>
-                setBooks(res.data)
+                setBooksSaved(res.data)
             )
             .catch(err => console.log(err));
     };
@@ -40,19 +41,21 @@ function SavedBooks() {
                     <Jumbotron>
                         <h1>Saved Books</h1>
                     </Jumbotron>
-                    {books.length ? (
-                        <List>
-                            {books.map(book => (
-                                <ListItem key={book._id}>
-                                    <Link to={"/books/" + book._id}>
-                                        <strong>
-                                            {book.title} by {book.author}
-                                        </strong>
-                                    </Link>
-                                    <DeleteBtn onClick={() => deleteBook(book._id)} />
-                                </ListItem>
-                            ))}
-                        </List>
+                    {booksSaved.length ? (
+                        <div>
+                            {booksSaved.map(book => {
+                                return (
+                                    <Container>
+                                        <DeleteBtn onClick={() => deleteBook(book._id)} />
+                                        <Card
+                                            key={book.id}
+                                            title={book.title} authors={book.authors} image={book.image}
+                                            description={book.description} link={book.link} gBookId={book.gBookId}>
+                                        </Card>
+                                    </Container>
+                                )
+                            })}
+                        </div>
                     ) : (
                             <h3>No Results to Display</h3>
                         )}
