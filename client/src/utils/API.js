@@ -4,7 +4,7 @@ export default {
 
   //Google Books search
   googleSearch: function (query) {
-    const URI = 'https://www.googleapis.com/books/v1/volumes?q=${query}'
+    const URI = 'https://www.googleapis.com/books/v1/volumes?q=' + query
     return axios.get(URI).then(res => { return res.data })
   },
 
